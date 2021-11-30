@@ -47,9 +47,9 @@ class BiLSTM(nn.Module):
     def forward(self, features, lens):
         # print(self.hidden.size())
         features = self.dropout(features)
-        packed_embedded = nn.utils.rnn.pack_padded_sequence(features, lens, batch_first=True, enforce_sorted=False)
+        # packed_embedded = nn.utils.rnn.pack_padded_sequence(features, lens, batch_first=True, enforce_sorted=False)
         outputs, hidden_state = self.bilstm(packed_embedded)
-        outputs, output_len = torch.nn.utils.rnn.pad_packed_sequence(outputs, batch_first=True)
+        # outputs, output_len = torch.nn.utils.rnn.pad_packed_sequence(outputs, batch_first=True)
 
         return outputs, hidden_state  # outputs: batch, seq, hidden_dim - hidden_state: hn, cn: 2*num_layer, batch_size, hidden_dim/2
 
